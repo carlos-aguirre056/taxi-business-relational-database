@@ -10,7 +10,9 @@ Contains only non-volatile, non-transactional attributes.
 CREATE TABLE catalog.drivers(
 id_driver INT IDENTITY(1,1),
 full_name VARCHAR(100) NOT NULL,
-phone_number VARCHAR(15) NOT NULL,
+rfc CHAR(13) UNIQUE,
+curp CHAR(18) UNIQUE,
+birth_date DATE NOT NULL,
 
 CONSTRAINT PK_catalog_drivers PRIMARY KEY(id_driver)
 );
