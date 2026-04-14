@@ -1,0 +1,13 @@
+--1.1 CORE ENTITY
+-- 1.1.2 PERSON
+
+
+CREATE TABLE catalog.person(
+	id_person INT IDENTITY
+	, FirstName VARCHAR(50) NOT NULL
+	, LastName VARCHAR(50) NOT NULL
+	, CURP VARCHAR(18) NULL
+	, BirthDate DATE NOT NULL
+
+CONSTRAINT pk_person PRIMARY KEY(id_person)
+);
