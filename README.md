@@ -11,41 +11,41 @@ Attributes:
 
 ### 1.1.2	PERSON
 Atributtes: 
-a.	Id_person (ENTITY PK)
-b.	First Name 
-c.	Last Name
-d.	CURP (UNIQUE NULLABLE)
-e.	Birth_Date
+- Id_person (ENTITY PK)
+- First Name
+- Last Name
+- CURP (UNIQUE NULLABLE)
+- Birth_Date
 
 ### 1.1.3	CAR
 Atributtes:
-f.	Id_car (PK)
-g.	VIN (UNIQUE NOT NULL)
+- Id_car (PK)
+- VIN (UNIQUE NOT NULL)
 
 ## 1.2 RELATIONSHIP ENTITIES:
 
 ### 1.2.1	CONCESSION_OWNERSHIP
 Atributtes: 
-o	Id_ownership (ENTITY PK)
-o	 id_concession (FK)
-o	id_person (FK)
-o	start_date
-o	end_date (NULL = current)
+- Id_ownership (ENTITY PK)
+- id_concession (FK)
+- id_person (FK)
+- start_date
+- end_date (NULL = current)
 
 ### 1.2.2	Car_Driver_Assignment
 Atributtes: 
-o	Id_car_driver_history(PK)
-o	Id_person (FK)
-o	Id_car (FK)
-o	start_date
-o	end_date (NULL = current)
+- Id_car_driver_history(PK)
+- Id_person (FK)
+- Id_car (FK)
+- start_date
+- end_date (NULL = current)
 
 ### 1.2.3	CAR_CONCESSION_ASSIGNMENT
 Atributtes: 
-o	Id_car_concession_history(PK)
-o	Id_car (FK)
-o	Id_concession (FK)
-o	start_date
-o	end_date (NULL = current)
+- Id_car_concession_history(PK)
+- Id_car (FK)
+- Id_concession (FK)
+- start_date
+- end_date (NULL = current)
 
 
