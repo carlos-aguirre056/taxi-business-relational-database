@@ -16,7 +16,6 @@ CONSTRAINT pk_ConcessionOwnership PRIMARY KEY(id_ownership)
   );
 
 
---CREATION OF UNIQUE INDEXES TO ENSURE ONLY ONE ACTIVE ROW
-CREATE UNIQUE INDEX UX_ConcessionOwnership_ActiveOwner ON ConcessionOwnership(id_person) WHERE end_date IS NULL;
+--CREATION OF UNIQUE INDEX TO ENSURE ONLY ONE ACTIVE ROW
 
 CREATE UNIQUE INDEX UX_ConcessionOwnership_ActiveConcession ON ConcessionOwnership(id_concession) WHERE end_date IS NULL;
