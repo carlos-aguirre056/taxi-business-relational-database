@@ -5,9 +5,9 @@ Real-world relational database model for a taxi fleet built in SQL Server. Inclu
 ## 1.1	 Core entities:
 ### 1.1.1	CONCESSION
 Attributes:
-o	Id_concession (ENTITY PK)
-o	Economic Number (UNIQUE NOT NULL)
-o	Authorization Number (UNIQUE NOT NULL)
+- Id_concession (ENTITY PK)
+- Economic Number (UNIQUE NOT NULL)
+- Authorization Number (UNIQUE NOT NULL)
 
 ### 1.1.2	PERSON
 Atributtes: 
