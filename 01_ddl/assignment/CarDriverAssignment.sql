@@ -4,8 +4,8 @@ CREATE TABLE CarDriverAssignment(
     id_CarDriverAssignment INT IDENTITY
     , id_person INT NOT NULL
     , id_car INT NOT NULL
-    , start_at DATETIME(0) NOT NULL
-    , end_at DATETIME(0) NULL
+    , start_at DATETIME2(0) NOT NULL
+    , end_at DATETIME2(0) NULL
 
 , CONSTRAINT pk_CarDriverAssignment PRIMARY KEY(id_CarDriverAssignment)
 , CONSTRAINT fk_CarDriverAssignment_PersonIdDriver FOREIGN KEY(id_person) REFERENCES catalog.person(id_person)
