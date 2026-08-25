@@ -3,8 +3,8 @@
 
 CREATE TABLE ConcessionOwnership(
   id_ownership INT IDENTITY
-  , id_concession INT UNIQUE NOT NULL
-  , id_person INT UNIQUE NOT NULL
+  , id_concession INT NOT NULL
+  , id_person INT NOT NULL
   , start_date DATE NOT NULL
   , end_date DATE NULL
 
