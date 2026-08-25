@@ -8,13 +8,9 @@ CREATE TABLE CarConcessionAssignment(
 , end_date DATE NULL
 
 
-CONSTRAINT PK_CarConcessionAssignment
-    PRIMARY KEY(id_car_concession_assignment)
-, CONSTRAINT FK_CarConcessionAssignment_Car  
-    FOREIGN KEY (id_car) REFERENCES catalog.car(id_car)
-, CONSTRAINT FK_CarConcessionAssignment_Concession
-    FOREIGN KEY (id_concession) REFERENCES catalog.concession(id_concession)
-, CONSTRAINT CK_CarConcessionAssignment_ValidDateRange 
-    CHECK(end_date IS NULL OR start_date<end_date)
+CONSTRAINT PK_CarConcessionAssignment PRIMARY KEY(id_car_concession_assignment)
+, CONSTRAINT FK_CarConcessionAssignment_Car FOREIGN KEY (id_car) REFERENCES catalog.car(id_car)
+, CONSTRAINT FK_CarConcessionAssignment_Concession FOREIGN KEY (id_concession) REFERENCES catalog.concession(id_concession)
+, CONSTRAINT CK_CarConcessionAssignment_ValidDateRange CHECK(end_date IS NULL OR start_date<end_date)
   );
 GO
