@@ -9,8 +9,8 @@ CREATE TABLE ConcessionOwnership(
   , end_date DATE NULL
 
 CONSTRAINT pk_ConcessionOwnership PRIMARY KEY(id_ownership)
-, CONSTRAINT fk_ConcessionOnwership_ConcessionFK FOREIGN KEY(id_concession) REFERENCES concession
-, CONSTRAINT fk_ConcessionOwnership_PersonFK FOREIGN KEY(id_person) REFERENCES person
+, CONSTRAINT fk_ConcessionOwnership_ConcessionFK FOREIGN KEY(id_concession) REFERENCES catalog.concession
+, CONSTRAINT fk_ConcessionOwnership_PersonFK FOREIGN KEY(id_person) REFERENCES catalog.person
 , CONSTRAINT ck_ConcessionOwnership_ValidDateRange CHECK(end_date IS  NULL OR start_date<end_date)
   GO
   );
