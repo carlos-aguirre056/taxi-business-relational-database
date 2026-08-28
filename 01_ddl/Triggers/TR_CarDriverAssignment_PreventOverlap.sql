@@ -1,4 +1,5 @@
 --Trigger to prevent overlaping between active cars or drivers. Using double check for both attributes: Car and Driver
+--Only one driver per car at a time and viceversa -> Trigger divied in two
 
 CREATE OR ALTER TRIGGER assignment.TR_CarDriverAssignment_PreventOverlap
 ON assignment.CarDriverAssignment
