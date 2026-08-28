@@ -1,4 +1,4 @@
----1.1 Core entities:
+---1.1 CORE ENTITY
 --- 1.1.1 CONCESSION
 CREATE TABLE catalog.concessions(
 	  id_concession INT IDENTITY(1,1),
