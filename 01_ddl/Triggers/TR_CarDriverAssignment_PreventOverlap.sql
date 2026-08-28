@@ -15,8 +15,8 @@ BEGIN
         INNER JOIN assignment.CarDriverAssignment AS c
             ON c.id_car = i.id_car
            AND c.id_CarDriverAssignment <> i.id_CarDriverAssignment
-           AND i.start_date < COALESCE(c.end_date, '9999-12-31 23:59:59')
-           AND c.start_date < COALESCE(i.end_date, '9999-12-31 23:59:59')
+           AND i.start_at < COALESCE(c.end_at, '9999-12-31 23:59:59')
+           AND c.start_at < COALESCE(i.end_at, '9999-12-31 23:59:59')
     )
     BEGIN
         THROW 50001 --custom error number assigned to car overlap 
