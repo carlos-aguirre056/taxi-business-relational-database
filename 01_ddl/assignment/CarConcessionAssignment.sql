@@ -1,12 +1,12 @@
---1.2 RELATIONSHIP ENTITY
+--1.2 RELATIONSHIP ENTITIES
   -- 1.2.3 CAR_CONCESSION_ASSIGNMENT
-CREATE TABLE CarConcessionAssignment(
-  id_CarConcessionAssignment INT IDENTITY
+CREATE TABLE assignment.CarConcessionAssignment
+(
+  id_CarConcessionAssignment INT IDENTITY(1,1) NOT NULL
 , id_car INT NOT NULL
 , id_concession INT NOT NULL
 , start_at DATETIME2(0) NOT NULL
 , end_at DATETIME2(0) NULL
-
 
 
 , CONSTRAINT pk_CarConcessionAssignment PRIMARY KEY(id_CarConcessionAssignment)
@@ -18,6 +18,7 @@ GO
 
 
 --CREATION OF UNIQUE INDEXES TO ENSURE ONLY ACTIVE ROW PER TABLE
-CREATE UNIQUE INDEX UX_CarConcessionAssignment_ActiveConcession ON CarConcessionAssignment(id_concession) WHERE end_at IS NULL;
-
-CREATE UNIQUE INDEX UX_CarConcessionAssignment_ActiveCar ON CarConcessionAssignment(id_car) WHERE end_at IS NULL;
+CREATE UNIQUE INDEX UX_CarConcessionAssignment_ActiveConcession ON assignment.CarConcessionAssignment(id_concession) WHERE end_at IS NULL;
+GO
+CREATE UNIQUE INDEX UX_CarConcessionAssignment_ActiveCar ON assignment.CarConcessionAssignment(id_car) WHERE end_at IS NULL;
+GO
