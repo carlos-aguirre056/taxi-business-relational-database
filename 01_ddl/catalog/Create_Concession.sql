@@ -3,8 +3,8 @@
 CREATE TABLE catalog.concession
 (
 	  id_concession INT IDENTITY(1,1) NOT NULL
-	, economic_number VARCHAR(10) UNIQUE NOT NULL
-	, authorization_number VARCHAR(10) UNIQUE NOT NULL
+	, economic_number VARCHAR(10) NOT NULL UNIQUE
+	, authorization_number VARCHAR(10) NOT NULL UNIQUE
 	
 	
 	, CONSTRAINT pk_concession PRIMARY KEY(id_concession)
