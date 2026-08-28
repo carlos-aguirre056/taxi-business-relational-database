@@ -20,5 +20,5 @@ GO
 
 CREATE UNIQUE INDEX UX_CarDriverAssignment_ActiveCar ON assignment.CarDriverAssignment(id_car) WHERE end_at IS NULL;
 GO
-CREATE UNIQUE INDEX UX_CarDriverAssignment_ActiveDriver ON CarDriverAssignment(id_person) WHERE end_at IS NULL;
+CREATE UNIQUE INDEX UX_CarDriverAssignment_ActiveDriver ON assignment.CarDriverAssignment(id_person) WHERE end_at IS NULL;
 GO
