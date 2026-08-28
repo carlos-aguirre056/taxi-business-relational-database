@@ -14,7 +14,7 @@ BEGIN
         FROM inserted AS i
         INNER JOIN CarDriverAssignment AS c
             ON c.id_car = i.id_car
-           AND c.id_CarDriverAssignment <> i.id_car_driver_assignment
+           AND c.id_CarDriverAssignment <> i.id_CarDriverAssignment
            AND i.start_date < COALESCE(c.end_date, '9999-12-31 23:59:59')
            AND c.start_date < COALESCE(i.end_date, '9999-12-31 23:59:59')
     )
@@ -31,7 +31,7 @@ BEGIN
         FROM inserted AS i
         INNER JOIN CarDriverAssignment AS c
             ON c.id_person = i.id_person
-           AND c.id_CarDriverAssignment <> i.id_car_driver_assignment
+           AND c.id_CarDriverAssignment <> i.id_CarDriverAssignment
            AND i.start_date < COALESCE(c.end_date, '9999-12-31 23:59:59')
            AND c.start_date < COALESCE(i.end_date, '9999-12-31 23:59:59')
     )
