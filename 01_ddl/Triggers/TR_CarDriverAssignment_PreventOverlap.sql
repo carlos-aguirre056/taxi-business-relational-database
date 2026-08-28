@@ -7,7 +7,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Prevent overlapping inserts for the same car
+    -- Prevent overlapping inserts and updates for the same car
     IF EXISTS
     (
         SELECT 1
@@ -19,12 +19,12 @@ BEGIN
            AND c.start_at < COALESCE(i.end_at, '9999-12-31 23:59:59')
     )
     BEGIN
-        THROW 50001 --custom error number assigned to car overlap 
-        ,'Temporal integrity violation: overlapping driver assignments exist for the same car.', 1;
+        --custom error number assigned to car overlap 
+        THROW 50001 ,'Temporal integrity violation: overlapping driver assignments exist for the same car.', 1;
     END;
 
 
-    -- Prevent overlapping inserts for the same driver
+    -- Prevent overlapping inserts and updates for the same driver
     IF EXISTS
     (
         SELECT 1
@@ -36,8 +36,8 @@ BEGIN
            AND c.start_at < COALESCE(i.end_at, '9999-12-31 23:59:59')
     )
     BEGIN
-        THROW 50002 --custom error number assigned to driver overlap
-        ,'Temporal integrity violation: overlapping car assignments exist for the same driver.', 1;
+        --custom error number assigned to driver overlap
+        THROW 50002, 'Temporal integrity violation: overlapping car assignments exist for the same driver.', 1;
     END;
 END;
 GO
