@@ -1,4 +1,5 @@
---FILE TO TEST DATA INTEGRITY of assignemnt.CarDriverAssignment: From CHECK for data consistency in individual rows to triggers for integrity along the table
+--FILE TO TEST DATA INTEGRITY of assignemnt.CarDriverAssignment. 
+--We test the three layers keeping data integrity: CHECK constraints, UNIQUE INDEXES and TRIGGER
 
 BEGIN TRANSACTION; 
 --Creating a transaction to avoid leaving fake people and cars in the DB
@@ -61,7 +62,7 @@ DECLARE @CarB INT =
 );
 
 
---First trial. Insert of correct data. This data is the base for the rest of the tests
+--First trial. Insert of correct data. This data is the BASE (IMPORTANT) for the rest of the tests
 INSERT INTO assignment.CarDriverAssignment
     (id_person, id_car, start_at, end_at)
 VALUES
@@ -73,7 +74,19 @@ VALUES
     );
 
 
---Second trial. Insert of data to check correct functionality of half-open interval convention [start_at, end_at)
+
+
+--Retrieve the inserted data to check if it was succesful
+SELECT *
+FROM assignment.CarDriverAssignment
+WHERE id_car IN (@CarA, @CarB);
+
+--And Rollback everything to not leave fake data behind as mentioned at the beggining
+ROLLBACK;
+
+--TRIGGER TESTS EXPECTED TO SUCCED PUT AFTER THE DATA INSERT AND THE DATA RETRIEVAL
+
+--Second trial for TRIGGER. Insert of data to check correct functionality of half-open interval convention [start_at, end_at)
 --To check if one person can start driving a car at the moent other leaves it (Which in this example is 12:00 pm)
 INSERT INTO assignment.CarDriverAssignment
     (id_person, id_car, start_at, end_at)
@@ -85,7 +98,7 @@ VALUES
         '2026-01-20 18:00:00'
     );
 
---Third trial: A gap is valid
+--Third trial for TRIGGER: A gap is valid
 --Just replacing second trial with this one, and leaving the rest as it is
 INSERT INTO assignment.CarDriverAssignment
     (id_person, id_car, start_at, end_at)
@@ -97,17 +110,10 @@ VALUES
         '2026-01-20 18:00:00'
     );
 
---Retrieve the inserted data to check if it was succesful
-SELECT *
-FROM assignment.CarDriverAssignment
-WHERE id_car IN (@CarA, @CarB);
 
---And Rollback everything to not leave fake data behind as mentioned at the beggining
-ROLLBACK;
+-- TRIGGER TESTS EXPECTED TO VIOLATE TIMELINE INTEGRITY
 
---TESTS EXPECTED TO VIOLATE TIMELINE INTEGRITY
-
---Fourth trial: Overlapping CarA with two drivers
+--Fourth trial for TRIGGER: Overlapping CarA with two drivers
 --DriverB tries to drive CarA at the same time than DriverA triggering the trigger to fail
 INSERT INTO assignment.CarDriverAssignment
     (id_person, id_car, start_at, end_at)
@@ -119,7 +125,7 @@ VALUES
         '2026-01-08 12:00:00'
     );
 
---Fifht trial: Overlapping the same driver
+--Fifht trial for TRIGGER: Overlapping the same driver
 -- DriverA in two cars CarB and CarA
 INSERT INTO assignment.CarDriverAssignment
     (id_person, id_car, start_at, end_at)
@@ -131,3 +137,39 @@ VALUES
         '2026-01-08 12:00:00'
     );
 
+--Trial for CHECK constraints still using the base
+-- Invalid date range. End date is before start date
+INSERT INTO assignment.CarDriverAssignment
+    (id_person, id_car, start_at, end_at)
+VALUES
+    (
+        @DriverB,
+        @CarB,
+        '2026-01-20 08:00:00',
+        '2026-01-15 08:00:00'
+    );
+
+--Trial for UNIQUE INDEX
+--Two drivers (DRIVER B AND DRIVER C) trying to drive the same car (CAR A)
+
+-- First active assignment: valid
+INSERT INTO assignment.CarDriverAssignment
+    (id_person, id_car, start_at, end_at)
+VALUES
+    (
+        @DriverB,
+        @CarA,
+        '2026-01-15 08:00:00',
+        NULL
+    );
+
+-- Second active assignment for same car: must fail
+INSERT INTO assignment.CarDriverAssignment
+    (id_person, id_car, start_at, end_at)
+VALUES
+    (
+        @DriverC,
+        @CarA,
+        '2026-01-20 08:00:00',
+        NULL
+    );
