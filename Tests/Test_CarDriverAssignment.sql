@@ -92,3 +92,14 @@ WHERE id_car IN (@CarA, @CarB);
 ROLLBACK;
 
 
+--Third trial: A gap is valid
+--Just replacing second trial with this one, and leaving the rest as it is
+INSERT INTO assignment.CarDriverAssignment
+    (id_person, id_car, start_at, end_at)
+VALUES
+    (
+        @DriverB,
+        @CarA,
+        '2026-01-15 09:00:00',
+        '2026-01-20 18:00:00'
+    );
