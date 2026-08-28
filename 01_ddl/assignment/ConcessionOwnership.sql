@@ -18,5 +18,5 @@ GO
 
 --CREATION OF UNIQUE INDEX TO ENSURE ONLY ONE ACTIVE ROW
 
-CREATE UNIQUE INDEX UX_ConcessionOwnership_ActiveConcession ON assignment.ConcessionOwnership(id_concession) WHERE end_date IS NULL;
+CREATE UNIQUE INDEX UX_ConcessionOwnership_ActiveConcession ON assignment.ConcessionOwnership(id_concession) WHERE end_at IS NULL;
 GO
