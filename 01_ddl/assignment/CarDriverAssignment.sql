@@ -1,6 +1,6 @@
 --1.2 RELATIONSHIP ENTITIES
 -- 1.2.2 CAR DRIVER ASSGINMENT
-CREATE TABLE CarDriverAssignment
+CREATE TABLE assignment.CarDriverAssignment
 (
     id_CarDriverAssignment INT IDENTITY(1,1) NOT NULL
     , id_person INT NOT NULL
