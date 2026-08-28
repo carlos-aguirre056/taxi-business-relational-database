@@ -1,7 +1,7 @@
 --Trigger to prevent overlaping between active cars or drivers. Using double check for both attributes: Car and Driver
 
-CREATE OR ALTER TRIGGER TR_CarDriverAssignment_PreventOverlap
-ON CarDriverAssignment
+CREATE OR ALTER TRIGGER assignment.TR_CarDriverAssignment_PreventOverlap
+ON assignment.CarDriverAssignment
 AFTER INSERT, UPDATE
 AS
 BEGIN
@@ -12,7 +12,7 @@ BEGIN
     (
         SELECT 1
         FROM inserted AS i
-        INNER JOIN CarDriverAssignment AS c
+        INNER JOIN assignment.CarDriverAssignment AS c
             ON c.id_car = i.id_car
            AND c.id_CarDriverAssignment <> i.id_CarDriverAssignment
            AND i.start_date < COALESCE(c.end_date, '9999-12-31 23:59:59')
@@ -29,7 +29,7 @@ BEGIN
     (
         SELECT 1
         FROM inserted AS i
-        INNER JOIN CarDriverAssignment AS c
+        INNER JOIN assignment.CarDriverAssignment AS c
             ON c.id_person = i.id_person
            AND c.id_CarDriverAssignment <> i.id_CarDriverAssignment
            AND i.start_date < COALESCE(c.end_date, '9999-12-31 23:59:59')
