@@ -1,9 +1,12 @@
 --1.1 CORE ENTITY
 --1.1.3 CAR
 
-CREATE TABLE catalog.car(
-    id_car INT IDENTITY
+CREATE TABLE catalog.car
+(
+    id_car INT IDENTITY(1,1) NOT NULL
   , VIN VARCHAR(100) UNIQUE NOT NULL
+    
+  , CONSTRAINT pk_car PRIMARY KEY (id_car)
 
-CONSTRAINT pk_car PRIMARY KEY (id_Car)
-  );
+);
+GO
