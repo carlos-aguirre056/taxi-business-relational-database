@@ -1,5 +1,7 @@
 --File to move validated data from staging into normalized tables. 
 --This file validates imported data of the staging file to later insertion into the normalized table: billing DailyCharge
+--Validates against two mother tables: Car and person. Matching the staging CURP of staging.DailyChargeImport with the already stored CURP in catalog.person
+--And Car VIN of the staging file against catalog.car
 
 INSERT INTO billing.DailyCharge
 (
