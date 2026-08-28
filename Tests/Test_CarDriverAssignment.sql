@@ -59,7 +59,7 @@ DECLARE @CarB INT =
 );
 
 
---First trial. Insert of correct data
+--First trial. Insert of correct data. This data is the base for the rest of the tests
 INSERT INTO assignment.CarDriverAssignment
     (id_person, id_car, start_at, end_at)
 VALUES
@@ -83,15 +83,6 @@ VALUES
         '2026-01-20 18:00:00'
     );
 
---Retrieve the inserted data to check if it was succesful
-SELECT *
-FROM assignment.CarDriverAssignment
-WHERE id_car IN (@CarA, @CarB);
-
---And Rollback everything to not leave fake data behind as mentioned at the beggining
-ROLLBACK;
-
-
 --Third trial: A gap is valid
 --Just replacing second trial with this one, and leaving the rest as it is
 INSERT INTO assignment.CarDriverAssignment
@@ -103,3 +94,38 @@ VALUES
         '2026-01-15 09:00:00',
         '2026-01-20 18:00:00'
     );
+
+--Retrieve the inserted data to check if it was succesful
+SELECT *
+FROM assignment.CarDriverAssignment
+WHERE id_car IN (@CarA, @CarB);
+
+--And Rollback everything to not leave fake data behind as mentioned at the beggining
+ROLLBACK;
+
+--TESTS EXPECTED TO VIOLATE TIMELINE INTEGRITY
+
+--Fourth trial: Overlapping CarA with two drivers
+--DriverB tries to drive CarA at the same time than DriverA triggering the trigger to fail
+INSERT INTO assignment.CarDriverAssignment
+    (id_person, id_car, start_at, end_at)
+VALUES
+    (
+        @DriverB,
+        @CarA,
+        '2026-01-05 08:00:00',
+        '2026-01-08 12:00:00'
+    );
+
+--Fifht trial: Overlapping the same driver
+-- DriverA in two cars CarB and CarA
+INSERT INTO assignment.CarDriverAssignment
+    (id_person, id_car, start_at, end_at)
+VALUES
+    (
+        @DriverA,
+        @CarB,
+        '2026-01-05 08:00:00',
+        '2026-01-08 12:00:00'
+    );
+
