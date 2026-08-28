@@ -1,3 +1,5 @@
+--FILE TO TEST DATA INTEGRITY of assignemnt.CarDriverAssignment: From CHECK for data consistency in individual rows to triggers for integrity along the table
+
 BEGIN TRANSACTION; 
 --Creating a transaction to avoid leaving fake people and cars in the DB
 
