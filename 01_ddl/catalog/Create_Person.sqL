@@ -2,12 +2,14 @@
 -- 1.1.2 PERSON
 
 
-CREATE TABLE catalog.person(
-	id_person INT IDENTITY
+CREATE TABLE catalog.person
+(
+	id_person INT IDENTITY(1,1) NOT NULL
 	, FirstName VARCHAR(50) NOT NULL
 	, LastName VARCHAR(50) NOT NULL
-	, CURP VARCHAR(18) NULL
+	, CURP VARCHAR(18) NOT NULL
 	, BirthDate DATE NOT NULL
 
 CONSTRAINT pk_person PRIMARY KEY(id_person)
 );
+GO
