@@ -19,6 +19,6 @@ GO
 --CREATION OF UNIQUE INDEXES TO ENSURE THAT THERE IS ONLY ONCE ACTIVE ROW
 
 CREATE UNIQUE INDEX UX_CarDriverAssignment_ActiveCar ON assignment.CarDriverAssignment(id_car) WHERE end_at IS NULL;
-
+GO
 CREATE UNIQUE INDEX UX_CarDriverAssignment_ActiveDriver ON CarDriverAssignment(id_person) WHERE end_at IS NULL;
 GO
