@@ -70,6 +70,19 @@ VALUES
         '2026-01-10 12:00:00'
     );
 
+
+--Second trial. Insert of data to check correct functionality of half-open interval convention [start_at, end_at)
+--To check if one person can start driving a car at the moent other leaves it (Which in this example is 12:00 pm)
+INSERT INTO assignment.CarDriverAssignment
+    (id_person, id_car, start_at, end_at)
+VALUES
+    (
+        @DriverB,
+        @CarA,
+        '2026-01-10 12:00:00',
+        '2026-01-20 18:00:00'
+    );
+
 --Retrieve the inserted data to check if it was succesful
 SELECT *
 FROM assignment.CarDriverAssignment
@@ -77,3 +90,5 @@ WHERE id_car IN (@CarA, @CarB);
 
 --And Rollback everything to not leave fake data behind as mentioned at the beggining
 ROLLBACK;
+
+
