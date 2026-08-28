@@ -1,4 +1,4 @@
--- RELATIONSHIP ENTITIES
+-- 1.2 RELATIONSHIP ENTITY
 --1.2.1 Concession Ownership
 
 CREATE TABLE ConcessionOwnership(
