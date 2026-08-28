@@ -1,4 +1,4 @@
---CORE ENTITY
+--1.1 CORE ENTITY
 --1.1.3 CAR
 
 CREATE TABLE catalog.car(
