@@ -10,6 +10,6 @@ CREATE TABLE catalog.person
 	, CURP VARCHAR(18) UNIQUE NOT NULL
 	, BirthDate DATE NOT NULL
 
-CONSTRAINT pk_person PRIMARY KEY(id_person)
+	, CONSTRAINT pk_person PRIMARY KEY(id_person)
 );
 GO
